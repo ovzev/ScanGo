@@ -1,3 +1,4 @@
+//WE COLLABORATED ON WRITING THE CODE FROM THE SAME COMPUTER
 import 'package:flutter/material.dart';
 
 // Enum for Product Categories
