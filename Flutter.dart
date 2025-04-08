@@ -1,4 +1,3 @@
-//WE COLLABORATED ON WRITING THE CODE FROM THE SAME COMPUTER
 import 'package:flutter/material.dart';
 
 // Enum for Product Categories
@@ -36,7 +35,7 @@ class Transaction {
 
 // Lists for Data Storage
 List<Product> products = [];
-List<User> users = [];  
+List<User> users = [];
 List<Transaction> transactions = [];
 
 // Maps for Quick Lookup
@@ -103,8 +102,17 @@ class _ProductManagementPageState extends State<ProductManagementPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Product Management'),
-        centerTitle: true,
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/logo.png',
+              height: 40,
+            ),
+            SizedBox(width: 10),
+            Text('Product Management'),
+          ],
+        ),
+        centerTitle: false,
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: Padding(
@@ -192,44 +200,6 @@ class _ProductManagementPageState extends State<ProductManagementPage> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12)),
                 ),
-              ),
-            ),
-            SizedBox(height: 24),
-            Text('Products List',
-                style: Theme.of(context).textTheme.titleLarge),
-            SizedBox(height: 8),
-            Expanded(
-              child: ListView.builder(
-                itemCount: products.length,
-                itemBuilder: (context, index) {
-                  Product product = products[index];
-                  return AnimatedContainer(
-                    duration: Duration(milliseconds: 400),
-                    curve: Curves.easeInOut,
-                    margin: EdgeInsets.symmetric(vertical: 6),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.3),
-                          blurRadius: 8,
-                          offset: Offset(0, 4),
-                        ),
-                      ],
-                    ),
-                    child: ListTile(
-                      leading:
-                          Icon(Icons.inventory_2, color: Colors.deepPurple),
-                      title: Text(product.name,
-                          style: TextStyle(fontWeight: FontWeight.w600)),
-                      subtitle: Text(
-                        'Category: ${product.category.name}\nPrice: \$${product.price} | Quantity: ${product.quantity}',
-                        style: TextStyle(height: 1.5),
-                      ),
-                    ),
-                  );
-                },
               ),
             ),
           ],
