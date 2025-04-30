@@ -6,6 +6,7 @@ import 'pages/payment_screen.dart';
 import 'pages/offer_screen.dart';
 import 'pages/registration_screen.dart';
 import 'pages/home_screen.dart';
+import 'pages/profile_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         '/payment': (context) => PaymentScreen(),
         '/offers': (context) => OfferScreen(),
         '/register': (context) => RegistrationScreen(),
+        '/profile': (context) => ProfileScreen(),
       },
       theme: ThemeData(primarySwatch: Colors.blue),
     );
