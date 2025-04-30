@@ -34,7 +34,7 @@ class _CartScreenState extends State<CartScreen> {
       appBar: AppBar(
         title: Text(
           'Your Cart',
-          style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(fontWeight: FontWeight.bold), // Custom font for the title
         ),
         backgroundColor: Colors.lightBlue[400],
         leading: IconButton(
@@ -48,47 +48,40 @@ class _CartScreenState extends State<CartScreen> {
           ? Center(
         child: Text(
           'Your cart is empty!',
-          style: GoogleFonts.roboto(fontSize: 20, color: Colors.grey[700]),
+          style: GoogleFonts.roboto(fontSize: 20, color: Colors.grey[700]), // Custom font for empty cart message
         ),
       )
-          : CustomScrollView(
-        slivers: [
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                final item = cartItems[index];
-                return Card(
-                  margin: EdgeInsets.symmetric(vertical: 8),
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.teal[300],
-                      child: Icon(Icons.shopping_cart, color: Colors.white),
-                    ),
-                    title: Text(
-                      item.name,
-                      style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
-                    subtitle: Text(
-                      'Price: \$${item.price} | Quantity: ${item.quantity}',
-                      style: GoogleFonts.roboto(
-                          fontSize: 14, color: Colors.grey[600]),
-                    ),
-                    trailing: IconButton(
-                      icon: Icon(Icons.delete, color: Colors.redAccent),
-                      onPressed: () => removeItem(index),
-                    ),
-                  ),
-                );
-              },
-              childCount: cartItems.length,
+          : ListView.builder(
+        padding: EdgeInsets.all(12.0),
+        itemCount: cartItems.length,
+        itemBuilder: (context, index) {
+          final item = cartItems[index];
+          return Card(
+            margin: EdgeInsets.symmetric(vertical: 8),
+            elevation: 5,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
             ),
-          ),
-        ],
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Colors.teal[300],
+                child: Icon(Icons.shopping_cart, color: Colors.white),
+              ),
+              title: Text(
+                item.name,
+                style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 18), // Custom font for item name
+              ),
+              subtitle: Text(
+                'Price: \$${item.price} | Quantity: ${item.quantity}',
+                style: GoogleFonts.roboto(fontSize: 14, color: Colors.grey[600]), // Custom font for price & quantity
+              ),
+              trailing: IconButton(
+                icon: Icon(Icons.delete, color: Colors.redAccent),
+                onPressed: () => removeItem(index),
+              ),
+            ),
+          );
+        },
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.lightBlue[400],
@@ -113,7 +106,7 @@ class _CartScreenState extends State<CartScreen> {
                 icon: Icon(Icons.payment),
                 label: Text(
                   'Checkout',
-                  style: GoogleFonts.lato(fontSize: 16),
+                  style: GoogleFonts.lato(fontSize: 16), // Custom font for checkout button
                 ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.lightBlue[300],
