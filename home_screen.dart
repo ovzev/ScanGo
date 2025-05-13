@@ -1,78 +1,61 @@
+// pages/home_tabs_screen.dart
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'product_list_screen.dart';
+import 'offer_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeTabsScreen extends StatefulWidget {
+  @override
+  _HomeTabsScreenState createState() => _HomeTabsScreenState();
+}
+
+class _HomeTabsScreenState extends State<HomeTabsScreen> {
+  int _currentIndex = 0;
+
+  final List<Widget> _screens = [
+    ProductListScreen(),
+    OfferScreen(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Scan & Go',
-          style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Colors.lightBlue[400],
-        elevation: 0,
+      appBar: AppBar(title: Text("Scan & Go")),
+      body: _screens[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Products"),
+          BottomNavigationBarItem(icon: Icon(Icons.local_offer), label: "Offers"),
+        ],
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Image.asset(
-                'assets/images/logo.png',
-                width: 180,
-                height: 180,
-              ),
-              SizedBox(height: 30),
-              Text(
-                'Start your smart shopping journey!',
-                style: GoogleFonts.montserrat(
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.lightBlue[800],
-                ),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 10),
-              Text(
-                'Sign up, shop, and pay with ease and safety.',
-                style: GoogleFonts.montserrat(
-                  fontSize: 16,
-                  color: Colors.grey[700],
-                ),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 40),
-
-              ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/login');
-                },
-                icon: Icon(Icons.login, size: 28),
-                label: Text('Login'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.lightBlue[400],
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                  textStyle: GoogleFonts.poppins(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/profile');
-                },
-                child: Text('Edit Profile'),
-              ),
-
-            ],
-          ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(color: Colors.lightBlue),
+              child: Text('Menu', style: TextStyle(color: Colors.white, fontSize: 24)),
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Profile'),
+              onTap: () {
+                Navigator.pushNamed(context, '/profile');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('Logout'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            )
+          ],
         ),
       ),
     );
