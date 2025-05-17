@@ -3,6 +3,9 @@
 A Flutter-based mobile app that simplifies shopping by scanning product barcodes,
 real-time price updates, instant checkout, and in-store navigation.
 
+![Image](https://github.com/user-attachments/assets/65108e6c-7f7c-483a-a115-35a8d2f7079f)
+![Image](https://github.com/user-attachments/assets/78a84612-e058-4a87-a2bd-1e44b090dd34)
+![Image](https://github.com/user-attachments/assets/6854cac3-1364-4810-8868-1287624b9c12)
 
 ## Overview
 
