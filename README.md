@@ -17,5 +17,3 @@ The app was built using **Flutter** with **Firebase** for backend services.
 -  In-store navigation map
 -  Instant checkout with QR verification
 -  Personalized offers based on user preferences
-
--  
